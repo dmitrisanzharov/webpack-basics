@@ -8,7 +8,16 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
+        filename: '[name].[contenthash].js',
+        clean: true
+    },
+    devServer: {
+        static: path.resolve(__dirname, 'src'),
+        port: 3000,
+        hot: true,
+        open: true,
+        compress: true,
+        historyApiFallback: true
     },
     module: {
         rules: [
@@ -26,7 +35,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'omg omg 2',
             filename: 'index.html',
-            template: 'src/template.html'
+            template: 'src/template.html' 
         })
     ]
 }
