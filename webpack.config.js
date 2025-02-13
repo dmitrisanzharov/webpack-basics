@@ -55,7 +55,7 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			title: "omg omg 2",
+			title: "Victors React App",
 			filename: "index.html",
 			template: "src/template.html",
 		}),
