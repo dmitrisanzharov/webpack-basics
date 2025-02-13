@@ -22,7 +22,7 @@ module.exports = {
 		historyApiFallback: true,
 	},
 	resolve: {
-		extensions: [".ts", ".js"], // Add TypeScript extensions
+		extensions: [".ts", ".js"],
 	},
 	module: {
 		rules: [

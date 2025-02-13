@@ -6,7 +6,7 @@ function generateJoke(){
         }
     }
     axios.get('https://icanhazdadjoke.com/', config).then((response) => {
-        console.log(response);
+        console.log('response', response);
         const htmlElement = document.getElementById('joke');
         if(htmlElement){
             htmlElement.innerHTML = response?.data?.joke;

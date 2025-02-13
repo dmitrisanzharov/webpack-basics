@@ -10,3 +10,5 @@ const myImg = <HTMLImageElement>document.getElementById('myImg');
 if(myImg){
     myImg.src = alienSVG;
 };
+
+generateJoke();
