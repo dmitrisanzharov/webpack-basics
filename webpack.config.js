@@ -5,13 +5,13 @@ module.exports = {
 	devtool: "source-map",
 	mode: "development",
 	entry: {
-		main: path.resolve(__dirname, "src/index.ts"),
+		main: path.resolve(__dirname, "src/index.tsx"),
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].[contenthash].js",
 		clean: true,
-        assetModuleFilename: "images/[name][ext]",
+		assetModuleFilename: "images/[name][ext]",
 	},
 	devServer: {
 		static: path.resolve(__dirname, "src"),
@@ -22,7 +22,7 @@ module.exports = {
 		historyApiFallback: true,
 	},
 	resolve: {
-		extensions: [".ts", ".js"],
+		extensions: [".ts", ".tsx", ".js"],
 	},
 	module: {
 		rules: [
@@ -31,21 +31,26 @@ module.exports = {
 				use: ["style-loader", "css-loader", "sass-loader"],
 			},
 			{
-				test: /\.(js|ts)$/,
+				test: /\.(ts|tsx)$/, // Apply these rules to .ts and .tsx files
+				use: "ts-loader",
+				exclude: /node_modules/,
+			},
+			{
+				test: /\.js$/,
 				exclude: /node_modules/,
 				use: [
 					{
 						loader: "babel-loader",
 						options: {
-							presets: ["@babel/preset-env", "@babel/preset-typescript"],
+							presets: ["@babel/preset-env", "@babel/preset-react"],
 						},
 					},
 				],
 			},
-            {
-                test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
-                type: "asset/resource",
-            }
+			{
+				test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+				type: "asset/resource",
+			},
 		],
 	},
 	plugins: [
