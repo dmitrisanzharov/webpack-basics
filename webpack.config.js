@@ -5,7 +5,7 @@ module.exports = {
 	devtool: "source-map",
 	mode: "development",
 	entry: {
-		main: path.resolve(__dirname, "src/index.js"),
+		main: path.resolve(__dirname, "src/index.ts"),
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
@@ -21,6 +21,9 @@ module.exports = {
 		compress: true,
 		historyApiFallback: true,
 	},
+	resolve: {
+		extensions: [".ts", ".js"], // Add TypeScript extensions
+	},
 	module: {
 		rules: [
 			{
@@ -28,13 +31,13 @@ module.exports = {
 				use: ["style-loader", "css-loader", "sass-loader"],
 			},
 			{
-				test: /\.js$/,
+				test: /\.(js|ts)$/,
 				exclude: /node_modules/,
 				use: [
 					{
 						loader: "babel-loader",
 						options: {
-							presets: ["@babel/preset-env"],
+							presets: ["@babel/preset-env", "@babel/preset-typescript"],
 						},
 					},
 				],

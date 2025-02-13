@@ -7,7 +7,10 @@ function generateJoke(){
     }
     axios.get('https://icanhazdadjoke.com/', config).then((response) => {
         console.log(response);
-        document.getElementById('joke').innerHTML = response.data.joke;
+        const htmlElement = document.getElementById('joke');
+        if(htmlElement){
+            htmlElement.innerHTML = response?.data?.joke;
+        }
     })
 }
 
