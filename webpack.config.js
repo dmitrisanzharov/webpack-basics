@@ -1,4 +1,5 @@
 const path = require('path');
+console.log('path', path.resolve(__dirname));
 
 module.exports = {
     mode: 'development',
@@ -13,6 +14,11 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+              test: /\.(png|svg|jpg|jpeg|gif)$/i,
+              type: 'asset/resource',
+            },
+
         ]
     }
 };
