@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	mode: "development",
+    devtool: "source-map",
 	resolve: {
 		extensions: [".js"],
 	},
@@ -39,4 +40,10 @@ module.exports = {
 			template: "src/index.html",
 		}),
 	],
+    devServer: {
+        static: path.resolve(__dirname, "src"),
+        open: true,
+        compress: true,
+        historyApiFallback: true
+    }
 };
