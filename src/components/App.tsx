@@ -5,7 +5,7 @@ type Props = {}
 
 const App = (props: Props) => {
   return (
-    <Button>App</Button>
+    <Button>{process.env.SECRET_KEY}</Button>
   )
 }
 
