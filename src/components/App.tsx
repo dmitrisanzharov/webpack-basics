@@ -16,6 +16,7 @@ const containerSx: any = {
     // margin: '10px',
     gap: '15px',
     flexWrap: 'wrap',
+    alignItems: 'center'
 }
 
 
