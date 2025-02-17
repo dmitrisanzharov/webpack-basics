@@ -15,14 +15,12 @@ const containerSx: any = {
     height: '90vh',
     // margin: '10px',
     gap: '15px',
-    flexWrap: 'wrap',
-    alignItems: 'center'
 }
 
 
 const boxSx: any = {
-    width: '150px',
-    height: '150px',
+    // width: '150px',
+    // height: '150px',
     fontSize: '8rem',
     borderRadius: '15px',
     display: 'flex',
@@ -34,10 +32,10 @@ const boxSx: any = {
 const App: React.FC<any> = (props: Props) => {
 
     return <Box sx={containerSx}>
-        <Box sx={{...boxSx, backgroundColor: 'red'}}>1</Box>
-        <Box sx={{...boxSx, backgroundColor: 'yellow'}}>2</Box>
-        <Box sx={{...boxSx, backgroundColor: 'green'}}>3</Box>
-        <Box sx={{...boxSx, backgroundColor: 'blue'}}>4</Box>
+        <Box sx={{...boxSx, backgroundColor: 'red', flexGrow: 2, flexShrink: 4, flexBasis: 1}}>1</Box>
+        <Box sx={{...boxSx, backgroundColor: 'yellow', flex: 1}}>2</Box>
+        <Box sx={{...boxSx, backgroundColor: 'green', flex: 1}}>3</Box>
+        <Box sx={{...boxSx, backgroundColor: 'blue', flex: 1}}>4</Box>
     </Box>;
 };
 
