@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Box } from '@mui/material';
+import Foo from './Foo'
 // @ts-ignore
 
 
@@ -31,12 +32,7 @@ const boxSx: any = {
 
 const App: React.FC<any> = (props: Props) => {
 
-    return <Box sx={containerSx}>
-        <Box sx={{...boxSx, backgroundColor: 'red', flexGrow: 2, flexShrink: 4, flexBasis: 1}}>1</Box>
-        <Box sx={{...boxSx, backgroundColor: 'yellow', flex: 1}}>2</Box>
-        <Box sx={{...boxSx, backgroundColor: 'green', flex: 1}}>3</Box>
-        <Box sx={{...boxSx, backgroundColor: 'blue', flex: 1}}>4</Box>
-    </Box>;
+    return <Foo />;
 };
 
 
