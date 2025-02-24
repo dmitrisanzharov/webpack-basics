@@ -14,9 +14,21 @@ module.exports = {
     },
     module: {
         rules: [
-            
-        ]
-    },
+          {
+            test: /\.js$/,
+            use: {
+              loader: "babel-loader",
+              options: {
+                cacheDirectory: true, // Enables caching of transpiled files
+              },
+            },
+          },
+          {
+            test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+            type: "asset/resource"
+          }
+        ],
+      },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'My Webpack Page One',
