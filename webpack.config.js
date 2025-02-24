@@ -9,23 +9,35 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[contenthash].js',
-      
-        assetModuleFilename: 'images/[hash][ext]'
+        assetModuleFilename: 'images/[name][ext]',
+        clean: true
     },
     module: {
         rules: [
           {
-            test: /\.js$/,
-            use: {
-              loader: "babel-loader",
-              options: {
-                cacheDirectory: true, // Enables caching of transpiled files
-              },
-            },
-          },
-          {
             test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
             type: "asset/resource"
+          },
+          {
+            test: /\.scss$/i,
+            use: [
+                {loader: 'style-loader'},
+                {loader: 'css-loader'},
+                {loader: 'sass-loader'}
+            ]
+          },
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: [
+                {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env"],
+                        cacheDirectory: true,
+                    }
+                }
+            ]
           }
         ],
       },
