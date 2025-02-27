@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     devtool: 'source-map',
@@ -54,7 +55,8 @@ module.exports = {
             title: 'React TypeScript Project',
             template: 'src/template.html',
             filename: 'index.html'
-        })
+        }),
+        new Dotenv()
     ],
     devServer: {
         static: path.resolve(__dirname, 'src'),
