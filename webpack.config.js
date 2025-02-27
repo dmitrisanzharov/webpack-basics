@@ -13,7 +13,6 @@ module.exports = {
         assetModuleFilename: 'images/[name][ext]',
         clean: true
     },
-    anyKey: 'blah',
     module: {
         rules: [
           {
