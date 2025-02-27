@@ -1,14 +1,14 @@
 const path = require('path');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
     mode: 'development',
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js']
     },
     entry: {
-        main: path.resolve(__dirname, 'src/index.ts')
+        main: path.resolve(__dirname, 'src/index.tsx')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -18,41 +18,42 @@ module.exports = {
     },
     module: {
         rules: [
-          {
-            test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
-            type: "asset/resource"
-          },
-          {
-            test: /\.scss$/i,
-            use: [
-                {loader: 'style-loader'},
-                {loader: 'css-loader'},
-                {loader: 'sass-loader'}
-            ]
-          },
-          {
-            test: /\.(ts|js)$/,
-            exclude: /node_modules/,
-            use: [
-                {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/preset-env", "@babel/preset-typescript"],
-                        cacheDirectory: true,
-                    }
-                }
-            ]
-          }
-        ],
-      },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+                type: 'asset/resource'
+            },
+            {
+                test: /\.scss$/i,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
+            {
+                test: /\.(ts|tsx)$/,  // TypeScript files
+                use: [
+                    {
+                        loader: 'babel-loader',  // Babel for modern JS features
+                        options: {
+                            presets: [
+                                '@babel/preset-env',       // Modern JS syntax
+                                '@babel/preset-react',     // React JSX support
+                                '@babel/preset-typescript' // TypeScript support
+                            ]
+                        }
+                    },
+                    'ts-loader'  // TypeScript transpilation and type checking
+                ],
+                exclude: /node_modules/
+            }
+        ]
+    },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'My Webpack Page One',
-            filename: 'index.html',
+            title: 'React TypeScript Project',
             template: 'src/template.html',
-            templateParameters: {
-                BUILD_TIME: 'anythingIWant'
-            }
+            filename: 'index.html'
         })
     ],
     devServer: {
@@ -62,4 +63,4 @@ module.exports = {
         compress: true,
         historyApiFallback: true
     }
-}
+};
