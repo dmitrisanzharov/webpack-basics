@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+    devtool: 'source-map',
     mode: 'development',
     entry: {
         main: path.resolve(__dirname, 'src/index.js')
@@ -12,6 +13,7 @@ module.exports = {
         assetModuleFilename: 'images/[name][ext]',
         clean: true
     },
+    anyKey: 'blah',
     module: {
         rules: [
           {
@@ -50,5 +52,12 @@ module.exports = {
                 BUILD_TIME: 'anythingIWant'
             }
         })
-    ]
+    ],
+    devServer: {
+        static: path.resolve(__dirname, 'src'),
+        port: 5000,
+        open: true,
+        compress: true,
+        historyApiFallback: true
+    }
 }
