@@ -4,8 +4,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
     devtool: 'source-map',
     mode: 'development',
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
     entry: {
-        main: path.resolve(__dirname, 'src/index.js')
+        main: path.resolve(__dirname, 'src/index.ts')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -13,7 +16,6 @@ module.exports = {
         assetModuleFilename: 'images/[name][ext]',
         clean: true
     },
-    anyKey: 'blah',
     module: {
         rules: [
           {
@@ -29,13 +31,13 @@ module.exports = {
             ]
           },
           {
-            test: /\.js$/,
+            test: /\.(ts|js)$/,
             exclude: /node_modules/,
             use: [
                 {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env"],
+                        presets: ["@babel/preset-env", "@babel/preset-typescript"],
                         cacheDirectory: true,
                     }
                 }
