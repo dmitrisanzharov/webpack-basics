@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
 	resolve: {
@@ -8,7 +9,7 @@ module.exports = {
 	},
 	mode: "development",
 	entry: {
-		main: path.resolve(__dirname, "src/index.ts"),
+		main: path.resolve(__dirname, "src/index.tsx"),
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
@@ -27,16 +28,19 @@ module.exports = {
 				use: ["style-loader", "css-loader", "sass-loader"],
 			},
 			{
-				test: /\.(ts|js)$/,
+				test: /\.(tsx|ts)$/,
 				exclude: /node_modules/,
 				use: [
 					{
 						loader: "babel-loader",
 						options: {
-							presets: ["@babel/preset-env", "@babel/preset-typescript"],
+							presets: ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
 							cacheDirectory: true,
 						},
 					},
+                    {
+                        loader: "ts-loader"
+                    }
 				],
 			},
 		],
@@ -53,6 +57,7 @@ module.exports = {
 		new CopyWebpackPlugin({
 			patterns: [{ from: "src/assets", to: "assets" }],
 		}),
+		new Dotenv()
 	],
 	devServer: {
 		static: path.resolve(__dirname, "src"),
