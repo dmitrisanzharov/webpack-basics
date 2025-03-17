@@ -48,5 +48,10 @@ module.exports = {
                 BUILD_TIME: 'omg it worked'
             }
         })
-    ]
+    ],
+    devServer: {
+        static: path.resolve(__dirname, 'src'),
+        port: 8080,
+        historyApiFallback: true
+    }
 }
