@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("all running 2")})();
