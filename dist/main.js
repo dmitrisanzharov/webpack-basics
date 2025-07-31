@@ -100,13 +100,23 @@ eval("{\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleEle
 
 /***/ }),
 
-/***/ "./src/bar/alien.avif":
-/*!****************************!*\
-  !*** ./src/bar/alien.avif ***!
-  \****************************/
+/***/ "./src/assets/alien.avif":
+/*!*******************************!*\
+  !*** ./src/assets/alien.avif ***!
+  \*******************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("{module.exports = __webpack_require__.p + \"bar/alien.avif\";\n\n//# sourceURL=webpack://webpack-basics/./src/bar/alien.avif?\n}");
+eval("{module.exports = __webpack_require__.p + \"assets/alien.avif\";\n\n//# sourceURL=webpack://webpack-basics/./src/assets/alien.avif?\n}");
+
+/***/ }),
+
+/***/ "./src/components/foo.js":
+/*!*******************************!*\
+  !*** ./src/components/foo.js ***!
+  \*******************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+eval("{__webpack_require__.r(__webpack_exports__);\nconsole.log('foo');\n\n//# sourceURL=webpack://webpack-basics/./src/components/foo.js?\n}");
 
 /***/ }),
 
@@ -116,7 +126,7 @@ eval("{module.exports = __webpack_require__.p + \"bar/alien.avif\";\n\n//# sourc
   \**********************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.scss */ \"./src/styles.scss\");\n/* harmony import */ var _bar_alien_avif__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bar/alien.avif */ \"./src/bar/alien.avif\");\n\n\ndocument.getElementById('alienPic').src = _bar_alien_avif__WEBPACK_IMPORTED_MODULE_1__;\n\n//# sourceURL=webpack://webpack-basics/./src/index.js?\n}");
+eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.scss */ \"./src/styles.scss\");\n/* harmony import */ var _assets_alien__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @assets/alien */ \"./src/assets/alien.avif\");\n/* harmony import */ var _jsfiles_foo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @jsfiles/foo */ \"./src/components/foo.js\");\n\n // image .avif\n // .js\n\ndocument.getElementById('alienPic').src = _assets_alien__WEBPACK_IMPORTED_MODULE_1__;\n\n//# sourceURL=webpack://webpack-basics/./src/index.js?\n}");
 
 /***/ }),
 

@@ -1,13 +1,9 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const __filename = fileURLToPath(import.meta.url);
+// __dirname and __filename already exist in CommonJS
 console.log('__filename: ', __filename);
-const __dirname = path.dirname(__filename);
-// console.log('__dirname: ', __dirname);
-// console.log('process', process.env);
 
 const htmlWebpackPluginConst = new HtmlWebpackPlugin({
     title: 'My Webpack App',
@@ -24,7 +20,7 @@ const copyWebpackPluginConst = new CopyWebpackPlugin({
     ]
 });
 
-export default {
+module.exports = {
     mode: 'development',
     entry: {
         main: './src/index.js'
@@ -34,7 +30,10 @@ export default {
         path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: 'assets/[name][ext]'
     },
-    plugins: [htmlWebpackPluginConst],
+    plugins: [
+        htmlWebpackPluginConst,
+        copyWebpackPluginConst
+    ],
     module: {
         rules: [
             {
@@ -43,28 +42,22 @@ export default {
             },
             {
                 test: /\.(scss|sass)$/,
-                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }]
+                use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env'],
-                            cacheDirectory: true
-                        }
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        cacheDirectory: true
                     }
-                ]
+                }
             }
         ]
     },
     resolve: {
-        extensions: ['.js', '.avif'],
-        alias: {
-            '@jsfiles': path.resolve(__dirname, 'src/components'),
-            '@assets': path.resolve(__dirname, 'src/assets'),
-        }
+        extensions: ['.js', '.avif']
     }
 };
