@@ -17,7 +17,7 @@ const htmlWebpackPluginConst = new HtmlWebpackPlugin({
 
 const copyWebpackPluginConst =     new CopyWebpackPlugin({
         patterns: [
-            { from: 'src/assets', to: 'assets' } // Copies images to dist/assets
+            { from: 'src/foo', to: 'assets' } // Copies images to dist/assets
         ]
     })
 
@@ -32,7 +32,7 @@ export default {
         path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: 'assets/[name][ext]'
     },
-    plugins: [htmlWebpackPluginConst, copyWebpackPluginConst],
+    plugins: [htmlWebpackPluginConst],
     module: {
         rules: [
             {
