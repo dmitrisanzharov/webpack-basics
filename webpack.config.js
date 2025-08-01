@@ -63,8 +63,16 @@ export default {
     resolve: {
         extensions: ['.js', '.avif'],
         alias: {
-            '@jsfiles': path.resolve(__dirname, 'src/components'),
+            '@components': path.resolve(__dirname, 'src/components'),
             '@assets': path.resolve(__dirname, 'src/assets'),
         }
+    },
+    devServer: {
+        static: path.resolve(__dirname, 'src'),
+        hot: true,
+        port: 9000,
+        open: true,
+        compress: true,
+        historyApiFallback: true
     }
 };
