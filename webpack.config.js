@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 
 const __filename = fileURLToPath(import.meta.url);
 console.log('__filename: ', __filename);
@@ -29,6 +30,8 @@ const TsconfigPathsPluginConst = new TsconfigPathsPlugin({
     configFile: path.resolve(__dirname, 'tsconfig.json') // Optional, defaults to tsconfig.json in root
 });
 
+const dotEnvConst = new Dotenv();
+
 export default {
     mode: 'development',
     entry: {
@@ -39,7 +42,7 @@ export default {
         path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: 'assets/[name][ext]'
     },
-    plugins: [htmlWebpackPluginConst],
+    plugins: [htmlWebpackPluginConst, dotEnvConst],
     module: {
         rules: [
             {
