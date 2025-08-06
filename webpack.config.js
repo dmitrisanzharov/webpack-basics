@@ -27,7 +27,7 @@ const copyWebpackPluginConst = new CopyWebpackPlugin({
 export default {
     mode: 'development',
     entry: {
-        main: './src/index.js'
+        main: './src/index.ts'
     },
     output: {
         filename: '[name].js',
@@ -46,13 +46,13 @@ export default {
                 use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }]
             },
             {
-                test: /\.js$/,
+                test: /\.(ts|js)$/,
                 exclude: /node_modules/,
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['@babel/preset-env'],
+                            presets: ['@babel/preset-env', "@babel/preset-typescript"],
                             cacheDirectory: true
                         }
                     }
@@ -61,7 +61,7 @@ export default {
         ]
     },
     resolve: {
-        extensions: ['.js', '.avif'],
+        extensions: ['.ts', '.js', '.avif'],
         alias: {
             '@components': path.resolve(__dirname, 'src/components'),
             '@assets': path.resolve(__dirname, 'src/assets'),
