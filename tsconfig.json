@@ -6,13 +6,11 @@
         "outDir": "./dist",
         "strict": true,
         "target": "ES6",
-        "baseUrl": ".",
+        "jsx": "react-jsx",
         "paths": {
-            "@assets/*": ["./src/assets/*"],
             "@components/*": ["./src/components/*"],
-            "@styles/*": ["./src/styles/*"],
-            "@types/*": ["./src/types/*"]
+            "@helpers/*": ["./src/helpers/*"]
         }
     },
-    "include": ["src/**/*", "src/types/**/*"]
+    "include": ["src"]
 }

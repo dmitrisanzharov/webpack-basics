@@ -2,6 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 console.log('__filename: ', __filename);
@@ -24,10 +25,14 @@ const copyWebpackPluginConst = new CopyWebpackPlugin({
     ]
 });
 
+const TsconfigPathsPluginConst = new TsconfigPathsPlugin({
+    configFile: path.resolve(__dirname, 'tsconfig.json') // Optional, defaults to tsconfig.json in root
+});
+
 export default {
     mode: 'development',
     entry: {
-        main: './src/index.ts'
+        main: './src/index.tsx'
     },
     output: {
         filename: '[name].js',
@@ -46,26 +51,31 @@ export default {
                 use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }]
             },
             {
-                test: /\.(ts|js)$/,
+                test: /\.(tsx|ts)$/,
                 exclude: /node_modules/,
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['@babel/preset-env', "@babel/preset-typescript"],
+                            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
                             cacheDirectory: true
                         }
+                    },
+                    {
+                        loader: 'ts-loader'
                     }
                 ]
             }
         ]
     },
     resolve: {
-        extensions: ['.ts', '.js', '.avif'],
-        alias: {
-            '@components': path.resolve(__dirname, 'src/components'),
-            '@assets': path.resolve(__dirname, 'src/assets'),
-        }
+        extensions: ['.tsx','.ts', '.js', '.avif'],
+        plugins: [TsconfigPathsPluginConst],
+        // alias: {
+        //     '@components': path.resolve(__dirname, 'src/components'),
+        //     '@helpers': path.resolve(__dirname, 'src/helpers'),
+        //     '@assets': path.resolve(__dirname, 'src/assets')
+        // }
     },
     devServer: {
         static: path.resolve(__dirname, 'src'),
