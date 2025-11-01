@@ -25,7 +25,7 @@ eval("{console.log('foo');\n\n//# sourceURL=webpack://webpack-basics/./src/foo.j
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("{// import foo from './foo.js';\nconst foo = __webpack_require__(/*! ./foo.js */ \"./src/foo.js\");\n\nconsole.log('all running');\n// console.log(process.env)\n\n//# sourceURL=webpack://webpack-basics/./src/index.js?\n}");
+eval("{// import foo from './foo.js';\nconst foo = __webpack_require__(/*! ./foo.js */ \"./src/foo.js\");\n// const img = require('./cdn.svg');\n\nconsole.log('all running');\n// console.log(process.env)\n\n//# sourceURL=webpack://webpack-basics/./src/index.js?\n}");
 
 /***/ })
 
