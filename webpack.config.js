@@ -14,7 +14,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        assetModuleFilename: 'images/[hash][ext][query]'
+        assetModuleFilename: 'images/[name][ext]'
     },
     plugins: [htmlPlugin],
     devServer: {
@@ -28,6 +28,11 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource'
+            },
+            {
+                test: /.(js|ts)$/,
                 exclude: (filepath) => console.log('test',filepath),
             }
         ]
