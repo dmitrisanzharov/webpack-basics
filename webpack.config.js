@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+console.log('ran', __filename);
 
 const htmlPlugin = new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'src/index.html'),
@@ -7,7 +8,6 @@ const htmlPlugin = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-    mode: 'development',
     entry: {
         main: path.resolve(__dirname, 'src/index.js')
     },
@@ -16,5 +16,20 @@ module.exports = {
         filename: '[name].js',
         assetModuleFilename: 'images/[hash][ext][query]'
     },
-    plugins: [htmlPlugin]
+    plugins: [htmlPlugin],
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname, 'src')
+        },
+        port: 3000,
+        open: true,
+        hot: true
+    },
+    module: {
+        rules: [
+            {
+                exclude: (filepath) => console.log('test',filepath),
+            }
+        ]
+    }
 };
