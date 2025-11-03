@@ -1,11 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-console.log('ran', __filename);
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const htmlPlugin = new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'src/index.html'),
     filename: 'index.html'
 });
+
 
 module.exports = {
     entry: {
@@ -32,8 +33,19 @@ module.exports = {
                 type: 'asset/resource'
             },
             {
-                test: /.(js|ts)$/,
-                exclude: (filepath) => console.log('test',filepath),
+                test: /\.(scss|sass)$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+               test: /.js$/,
+               exclude: /node_modules/,
+               use: {
+                   loader: 'babel-loader',
+                   options: {
+                       presets: ['@babel/preset-env'],
+                       cacheDirectory: true
+                   }
+               }
             }
         ]
     }
