@@ -1,6 +1,7 @@
 // import foo from './foo.js';
 import './index.scss';
-const foo = require('./foo.js');
+const foo = require('@src/foo.js');
+console.log("foo: ", foo);
 // const img = require('./cdn.svg');
 
 console.log('all running');

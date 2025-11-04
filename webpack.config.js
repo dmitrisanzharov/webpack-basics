@@ -2,11 +2,14 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const htmlPlugin = new HtmlWebpackPlugin({
+const htmlPluginConst = new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'src/index.html'),
-    filename: 'index.html'
+    filename: 'index.html',
+    title: 'omg',
+    templateParameters: {
+        FOO_BAR: 'anythingIWant_really'
+    }
 });
-
 
 module.exports = {
     entry: {
@@ -17,7 +20,13 @@ module.exports = {
         filename: '[name].js',
         assetModuleFilename: 'images/[name][ext]'
     },
-    plugins: [htmlPlugin],
+    resolve: {
+        extensions: ['*','.ts', '.js'],
+        alias: {
+            '@src': path.resolve(__dirname, 'src')
+        }
+    },
+    plugins: [htmlPluginConst],
     devServer: {
         static: {
             directory: path.resolve(__dirname, 'src')
@@ -37,15 +46,15 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-               test: /.js$/,
-               exclude: /node_modules/,
-               use: {
-                   loader: 'babel-loader',
-                   options: {
-                       presets: ['@babel/preset-env'],
-                       cacheDirectory: true
-                   }
-               }
+                test: /.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        cacheDirectory: true
+                    }
+                }
             }
         ]
     }
