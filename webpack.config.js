@@ -11,6 +11,15 @@ const htmlPluginConst = new HtmlWebpackPlugin({
     }
 });
 
+const devServerConfigs = {
+    static: {
+        directory: path.resolve(__dirname, 'src')
+    },
+    port: 3000,
+    open: true,
+    hot: true
+};
+
 module.exports = {
     entry: {
         main: path.resolve(__dirname, 'src/index.js')
@@ -21,20 +30,14 @@ module.exports = {
         assetModuleFilename: 'images/[name][ext]'
     },
     resolve: {
-        extensions: ['*','.ts', '.js'],
+        extensions: ['*', '.ts', '.js'],
         alias: {
             '@src': path.resolve(__dirname, 'src')
         }
     },
     plugins: [htmlPluginConst],
-    devServer: {
-        static: {
-            directory: path.resolve(__dirname, 'src')
-        },
-        port: 3000,
-        open: true,
-        hot: true
-    },
+
+    devServer: devServerConfigs,
     module: {
         rules: [
             {
