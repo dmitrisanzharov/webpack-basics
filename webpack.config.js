@@ -17,10 +17,13 @@ const devServerConfigs = {
     },
     port: 3000,
     open: true,
-    hot: true
+    hot: true,
+    compress: true,
+    historyApiFallback: true
 };
 
 module.exports = {
+    devtool: "source-map",
     entry: {
         main: path.resolve(__dirname, 'src/index.js')
     },
