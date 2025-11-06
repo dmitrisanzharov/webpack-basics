@@ -1,0 +1,14 @@
+{
+   "compilerOptions": {
+       "esModuleInterop": true,
+       "module": "ESNext",
+       "outDir": "./dist",
+       "strict": true,
+       "target": "ES6",
+       "paths": {
+           "@components/*": ["./src/components/*"],
+           "@images/*": ["./src/images/*"]
+       }
+   },
+   "include": ["src"]
+}

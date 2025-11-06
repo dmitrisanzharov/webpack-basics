@@ -25,7 +25,7 @@ const devServerConfigs = {
 module.exports = {
     devtool: "source-map",
     entry: {
-        main: path.resolve(__dirname, 'src/index.js')
+        main: path.resolve(__dirname, 'src/index.ts')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -33,9 +33,10 @@ module.exports = {
         assetModuleFilename: 'images/[name][ext]'
     },
     resolve: {
-        extensions: ['*', '.ts', '.js'],
+        extensions: ['.*', '.ts', '.js', '.svg'],
         alias: {
-            '@src': path.resolve(__dirname, 'src')
+            '@components': path.resolve(__dirname, 'src/components'),
+            '@images': path.resolve(__dirname, 'src/images')
         }
     },
     plugins: [htmlPluginConst],
@@ -52,12 +53,12 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-                test: /.js$/,
+                test: /.(ts|js)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'],
+                        presets: ['@babel/preset-env', '@babel/preset-typescript'],
                         cacheDirectory: true
                     }
                 }
