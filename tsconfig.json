@@ -1,14 +1,15 @@
 {
-   "compilerOptions": {
-       "esModuleInterop": true,
-       "module": "ESNext",
-       "outDir": "./dist",
-       "strict": true,
-       "target": "ES6",
-       "paths": {
-           "@components/*": ["./src/components/*"],
-           "@images/*": ["./src/images/*"]
-       }
-   },
-   "include": ["src"]
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "module": "ESNext",
+        "outDir": "./dist",
+        "strict": true,
+        "target": "ES6",
+        "paths": {
+            "@components/*": ["./src/components/*"],
+            "@assets/*": ["./src/assets/*"],
+            "@mahman/*": ["./src/*"]
+        }
+    },
+    "include": ["src"]
 }

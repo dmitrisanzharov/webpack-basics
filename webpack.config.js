@@ -1,6 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+const TsconfigPathsPluginConst = new TsconfigPathsPlugin({
+    configFile: path.resolve(__dirname, 'tsconfig.json')
+});
 
 const htmlPluginConst = new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'src/index.html'),
@@ -34,10 +39,12 @@ module.exports = {
     },
     resolve: {
         extensions: ['.*', '.ts', '.js', '.svg'],
-        alias: {
-            '@components': path.resolve(__dirname, 'src/components'),
-            '@images': path.resolve(__dirname, 'src/images')
-        }
+        plugins: [TsconfigPathsPluginConst]
+        // alias: {
+        //     '@components': path.resolve(__dirname, 'src/components'),
+        //     '@images': path.resolve(__dirname, 'src/images'),
+        //     '@mahman': path.resolve(__dirname, 'src/') // is the / important in here? 
+        // }
     },
     plugins: [htmlPluginConst],
 
