@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const TsconfigPathsPluginConst = new TsconfigPathsPlugin({
     configFile: path.resolve(__dirname, 'tsconfig.json')
@@ -28,9 +29,9 @@ const devServerConfigs = {
 };
 
 module.exports = {
-    devtool: "source-map",
+    devtool: 'source-map',
     entry: {
-        main: path.resolve(__dirname, 'src/index.ts')
+        main: path.resolve(__dirname, 'src/index.tsx')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -38,15 +39,15 @@ module.exports = {
         assetModuleFilename: 'images/[name][ext]'
     },
     resolve: {
-        extensions: ['.*', '.ts', '.js', '.svg'],
+        extensions: ['.ts', '.tsx', '.js', '.svg'],
         plugins: [TsconfigPathsPluginConst]
         // alias: {
         //     '@components': path.resolve(__dirname, 'src/components'),
         //     '@images': path.resolve(__dirname, 'src/images'),
-        //     '@mahman': path.resolve(__dirname, 'src/') // is the / important in here? 
+        //     '@mahman': path.resolve(__dirname, 'src/') // is the / important in here?
         // }
     },
-    plugins: [htmlPluginConst],
+    plugins: [htmlPluginConst, new Dotenv()],
 
     devServer: devServerConfigs,
     module: {
@@ -60,15 +61,21 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-                test: /.(ts|js)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/preset-typescript'],
-                        cacheDirectory: true
+                test: /\.(ts|tsx)$/, // TypeScript files
+                use: [
+                    { loader: 'ts-loader' },
+                    {
+                        loader: 'babel-loader', // Babel for modern JS features
+                        options: {
+                            presets: [
+                                '@babel/preset-env', // Modern JS syntax
+                                '@babel/preset-react', // React JSX support
+                                '@babel/preset-typescript' // TypeScript support
+                            ]
+                        }
                     }
-                }
+                ],
+                exclude: /node_modules/
             }
         ]
     }

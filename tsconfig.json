@@ -1,10 +1,18 @@
 {
     "compilerOptions": {
+        "target": "ES6",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "esModuleInterop": true,
-        "module": "ESNext",
         "outDir": "./dist",
         "strict": true,
-        "target": "ES6",
+
+        // for React
+        "lib": ["dom", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "jsx": "react-jsx",
+
         "paths": {
             "@components/*": ["./src/components/*"],
             "@assets/*": ["./src/assets/*"],
