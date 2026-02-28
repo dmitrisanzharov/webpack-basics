@@ -14,7 +14,8 @@ export default {
     },
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "[name].js"
+        filename: "[name].js",
+        assetModuleFilename: "assets/[name][ext]"
     },
     module: {
         rules: [
