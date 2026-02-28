@@ -1,5 +1,5 @@
 import './styles.scss';
-// import img from './assets/img.svg';
+import foo from '@core/foo';
 
 // const myImg = document.getElementById("myImg");
 // myImg.src = img;

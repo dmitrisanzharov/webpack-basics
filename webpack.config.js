@@ -8,6 +8,15 @@ const __dirname = path.dirname(__filename);
 console.log("dirname", __dirname);
 console.log("filename", __filename);
 
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+    title: "MahMan",
+    filename: "index.html",
+    template: "src/index.html",
+    templateParameters: {
+        DIMI_ONE: "DimiOne"
+    }
+});
+
 export default {
     entry: {
         main: path.resolve(__dirname, "src/index.js")
@@ -35,16 +44,20 @@ export default {
                     options: {
                         presets: ["@babel/preset-env"],
                         cacheDirectory: true
-                    }    
+                    }
                 }
             }
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: "MahMan",
-            filename: "index.html",
-            template: "src/index.html"
-        })
-    ]
+    plugins: [HtmlWebpackPluginConfig],
+    resolve: {
+        extensions: [".ts", ".tsx", ".js"],
+        alias: {
+            '@myAssets': path.resolve(__dirname, "src/assets"),
+            '@core': path.resolve(__dirname, "src"),
+        }
+    },
+    devServer: {
+        static: path.resolve(__dirname, "src"),
+    }
 };
