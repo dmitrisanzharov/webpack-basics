@@ -18,8 +18,9 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 export default {
+    devtool: "source-map",
     entry: {
-        main: path.resolve(__dirname, "src/index.js")
+        main: path.resolve(__dirname, "src/index.ts")
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -37,12 +38,12 @@ export default {
                 use: ["style-loader", "css-loader", "sass-loader"]
             },
             {
-                test: /\.js/,
+                test: /\.(js|ts)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env"],
+                        presets: ["@babel/preset-env", "@babel/preset-typescript"],
                         cacheDirectory: true
                     }
                 }
@@ -59,5 +60,6 @@ export default {
     },
     devServer: {
         static: path.resolve(__dirname, "src"),
+        open: true
     }
 };

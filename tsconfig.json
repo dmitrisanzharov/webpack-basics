@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+      "allowJs": true,
+      "esModuleInterop": true,
+      "module": "ESNext",
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "target": "ES6"
+  },
+  "include": ["src"],
+  "exclude": ["dist"],
+  "paths":{
+      "@myAssets": ["./src/assets/*"],
+      "@core": ["./src"]
+  }
+}
