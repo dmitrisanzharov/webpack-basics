@@ -2,6 +2,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+import Dotenv from 'dotenv-webpack';  
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,6 +22,8 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 const TsconfigPathsPluginConst = new TsconfigPathsPlugin({
     configFile: path.resolve(__dirname, "tsconfig.json")
 });
+
+const envPlugin = new Dotenv();
 
 export default {
     devtool: "source-map",
@@ -64,7 +67,7 @@ export default {
     plugins: [HtmlWebpackPluginConfig],
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
-        plugins: [TsconfigPathsPluginConst]
+        plugins: [TsconfigPathsPluginConst, envPlugin]
         // alias: {
         //     '@myAssets': path.resolve(__dirname, "src/assets"),
         //     '@core': path.resolve(__dirname, "src"),
