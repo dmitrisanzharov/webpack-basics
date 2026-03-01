@@ -1,6 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +17,11 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
         DIMI_ONE: "DimiOne"
     }
 });
+
+const TsconfigPathsPluginConst = new TsconfigPathsPlugin({
+   configFile: path.resolve(__dirname, 'tsconfig.json')
+});
+
 
 export default {
     devtool: "source-map",
@@ -53,10 +59,11 @@ export default {
     plugins: [HtmlWebpackPluginConfig],
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
-        alias: {
-            '@myAssets': path.resolve(__dirname, "src/assets"),
-            '@core': path.resolve(__dirname, "src"),
-        }
+        plugins: [TsconfigPathsPluginConst]
+        // alias: {
+        //     '@myAssets': path.resolve(__dirname, "src/assets"),
+        //     '@core': path.resolve(__dirname, "src"),
+        // }
     },
     devServer: {
         static: path.resolve(__dirname, "src"),
