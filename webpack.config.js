@@ -1,7 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
+import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,9 +19,8 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 const TsconfigPathsPluginConst = new TsconfigPathsPlugin({
-   configFile: path.resolve(__dirname, 'tsconfig.json')
+    configFile: path.resolve(__dirname, "tsconfig.json")
 });
-
 
 export default {
     devtool: "source-map",
@@ -44,15 +43,21 @@ export default {
                 use: ["style-loader", "css-loader", "sass-loader"]
             },
             {
-                test: /\.(js|ts)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/preset-env", "@babel/preset-typescript"],
-                        cacheDirectory: true
+                test: /\.(ts|tsx)$/,
+                use: [
+                    { loader: "ts-loader" },
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            presets: [
+                                "@babel/preset-env",
+                                "@babel/preset-react",
+                                "@babel/preset-typescript"
+                            ]
+                        }
                     }
-                }
+                ],
+                exclude: /node_modules/
             }
         ]
     },

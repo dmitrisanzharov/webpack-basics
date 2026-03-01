@@ -13,7 +13,10 @@
         "paths": {
             "@myAssets/*": ["src/assets/*"],
             "@core/*": ["src/*"]
-        }
+        },
+        "lib": ["dom", "esnext"],
+        "skipLibCheck": true,
+        "jsx": "react-jsx"
     },
     "include": ["src"],
     "exclude": ["dist"]
