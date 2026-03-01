@@ -7,12 +7,11 @@
         "rootDir": "./src",
         "strict": true,
         "target": "ES6",
-        "ignoreDeprecations": "6.0",
+        "ignoreDeprecations": "5.0",
         "moduleResolution": "bundler",
-        "baseUrl": ".",
         "paths": {
-            "@myAssets/*": ["src/assets/*"],
-            "@core/*": ["src/*"]
+            "@myAssets/*": ["./src/assets/*"],
+            "@core/*": ["./src/*"]
         },
         "lib": ["dom", "esnext"],
         "skipLibCheck": true,
