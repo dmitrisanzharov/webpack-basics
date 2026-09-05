@@ -1,1 +1,1 @@
-console.log('all running, after main')
+import img from './images/flower.jpg'
