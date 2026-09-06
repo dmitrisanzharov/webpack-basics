@@ -10,7 +10,8 @@ const htmlWebpackConst = new HtmlWebpackPlugin({
     filename: 'index.html',
     template: 'src/index.html',
     templateParameters: {
-        ANY_VAR: 'omg RUNTIME'
+        ANY_VAR: 'omg RUNTIME',
+        MY_VAR: 'my var 2'
     }
 });
 
