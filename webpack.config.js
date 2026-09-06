@@ -5,17 +5,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 console.log(__dirname);
 console.log(__filename);
 
-const htmlWebpackConst = new HtmlWebpackPlugin({  
+const htmlWebpackConst = new HtmlWebpackPlugin({
     title: 'foo page',
     filename: 'index.html',
-    template: 'src/index.html'
-})
+    template: 'src/index.html',
+    templateParameters: {
+        ANY_VAR: 'omg RUNTIME'
+    }
+});
 
 module.exports = {
     mode: 'production',
     entry: {
         main: path.resolve(__dirname, 'src/index.js'),
-        blah: path.resolve(__dirname, 'src/foo.js')
+        blah: path.resolve(__dirname, 'src/foo.js'),
+        yo: path.resolve(__dirname, 'src/bar.js')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -27,10 +31,25 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
                 type: 'asset/resource'
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env'],
+                            cacheDirectory: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(scss|sass)$/i,
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }]
             }
         ]
     },
-    plugins: [
-        htmlWebpackConst
-    ]
+    plugins: [htmlWebpackConst]
 };
