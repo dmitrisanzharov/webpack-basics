@@ -52,5 +52,11 @@ module.exports = {
             }
         ]
     },
-    plugins: [htmlWebpackConst]
+    plugins: [htmlWebpackConst],
+    resolve: {
+        extensions: ['.js'],
+        alias: {
+            '@allJs': path.resolve(__dirname, 'src/allJs')
+        }
+    }
 };
