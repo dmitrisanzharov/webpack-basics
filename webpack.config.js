@@ -56,7 +56,8 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
         alias: {
-            '@allJs': path.resolve(__dirname, 'src/allJs')
+            '@allJs': path.resolve(__dirname, 'src/allJs'),
+            '@goGo': path.resolve(__dirname, 'src/goGo')
         }
     }
 };
