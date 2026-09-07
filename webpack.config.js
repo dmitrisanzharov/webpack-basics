@@ -18,14 +18,13 @@ const htmlWebpackConst = new HtmlWebpackPlugin({
 module.exports = {
     mode: 'production',
     entry: {
-        main: path.resolve(__dirname, 'src/index.js'),
-        blah: path.resolve(__dirname, 'src/foo.js'),
-        yo: path.resolve(__dirname, 'src/bar.js')
+        main: path.resolve(__dirname, 'src/index.js')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        assetModuleFilename: 'images/[name][ext]'
+        assetModuleFilename: 'images/[name][ext]',
+        clean: true
     },
     module: {
         rules: [
@@ -57,7 +56,13 @@ module.exports = {
         extensions: ['.js'],
         alias: {
             '@allJs': path.resolve(__dirname, 'src/allJs'),
-            '@goGo': path.resolve(__dirname, 'src/goGo')
+            '@goGo': path.resolve(__dirname, 'src/goGo'),
+            '@singleFileGoo': path.resolve(__dirname, 'src/goo')
         }
+    },
+    devServer: {
+        static: path.resolve(__dirname, 'src'),
+        port: 5000,
+        open: true
     }
 };
