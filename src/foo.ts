@@ -1,1 +1,1 @@
-console.log('foo file triggered');
+console.log('foo file triggered with alias');
