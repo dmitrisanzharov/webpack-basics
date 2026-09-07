@@ -18,7 +18,7 @@ const htmlWebpackConst = new HtmlWebpackPlugin({
 module.exports = {
     mode: 'production',
     entry: {
-        main: path.resolve(__dirname, 'src/index.js')
+        main: path.resolve(__dirname, 'src/index.ts')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -33,13 +33,13 @@ module.exports = {
                 type: 'asset/resource'
             },
             {
-                test: /\.js$/,
+                test: /\.(ts|js)$/,
                 exclude: /node_modules/,
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['@babel/preset-env'],
+                            presets: ['@babel/preset-env', "@babel/preset-typescript"],
                             cacheDirectory: true
                         }
                     }
@@ -53,11 +53,10 @@ module.exports = {
     },
     plugins: [htmlWebpackConst],
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.ts', '.js'],
         alias: {
-            '@allJs': path.resolve(__dirname, 'src/allJs'),
-            '@goGo': path.resolve(__dirname, 'src/goGo'),
-            '@singleFileGoo': path.resolve(__dirname, 'src/goo')
+            extensions: ['.ts'],
+            '@foo': path.resolve(__dirname, 'src/foo')
         }
     },
     devServer: {
