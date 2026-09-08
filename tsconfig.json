@@ -9,11 +9,8 @@
         "target": "ES6",
         "ignoreDeprecations": "6.0",
         "moduleResolution": "bundler",
-        "baseUrl": ".",
         "paths": {
-            "@myAssets/*": ["src/assets/*"],
-            "@core/*": ["src/*"],
-            "@foo/*": ["src/"]
+            "@foo": ["./src/foo"]
         }
     },
     "include": ["src"],

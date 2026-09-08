@@ -55,7 +55,7 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.js'],
         alias: {
-            '@foo': path.resolve(__dirname, 'src/foo')
+            '@foo': path.resolve(__dirname, 'src/foo'),
         }
     },
     devServer: {
