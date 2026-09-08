@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 // console.log("path: ", path);
 
 console.log(__dirname);
@@ -20,6 +21,10 @@ const CopyWebpackPluginConst = new CopyWebpackPlugin({
     patterns: [
         { from: 'src/images', to: 'images' } // Copies images to dist/assets
     ]
+});
+
+const TsconfigPathsPluginConst = new TsconfigPathsPlugin({
+    configFile: path.resolve(__dirname, 'tsconfig.json')
 });
 
 module.exports = {

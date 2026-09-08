@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("textFile: ","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n")})();
+(()=>{"use strict";console.log("bar file ran"),console.log("barFile",{})})();
