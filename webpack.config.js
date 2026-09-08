@@ -49,13 +49,14 @@ module.exports = {
                 type: 'asset/source'
             },
             {
-                test: /\.(ts|js)$/,
+                test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
                 use: [
+                    { loader: 'ts-loader' },
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['@babel/preset-env', '@babel/preset-typescript'],
+                            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
                             cacheDirectory: true
                         }
                     }
@@ -69,10 +70,7 @@ module.exports = {
     },
     plugins: [htmlWebpackConst, CopyWebpackPluginConst],
     resolve: {
-        extensions: ['.ts', '.js'],
-        alias: {
-            '@foo': path.resolve(__dirname, 'src/foo')
-        }
+        extensions: ['.tsx', '.ts', '.js']
     },
     devServer: {
         static: path.resolve(__dirname, 'src'),
