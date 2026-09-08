@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 // console.log("path: ", path);
 
 console.log(__dirname);
@@ -13,6 +14,12 @@ const htmlWebpackConst = new HtmlWebpackPlugin({
         ANY_VAR: 'omg RUNTIME',
         MY_VAR: 'my var 2'
     }
+});
+
+const CopyWebpackPluginConst = new CopyWebpackPlugin({
+    patterns: [
+        { from: 'src/images', to: 'images' } // Copies images to dist/assets
+    ]
 });
 
 module.exports = {
@@ -33,13 +40,17 @@ module.exports = {
                 type: 'asset/resource'
             },
             {
+                test: /\.txt$/i,
+                type: 'asset/source'
+            },
+            {
                 test: /\.(ts|js)$/,
                 exclude: /node_modules/,
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['@babel/preset-env', "@babel/preset-typescript"],
+                            presets: ['@babel/preset-env', '@babel/preset-typescript'],
                             cacheDirectory: true
                         }
                     }
@@ -51,11 +62,11 @@ module.exports = {
             }
         ]
     },
-    plugins: [htmlWebpackConst],
+    plugins: [htmlWebpackConst, CopyWebpackPluginConst],
     resolve: {
         extensions: ['.ts', '.js'],
         alias: {
-            '@foo': path.resolve(__dirname, 'src/foo'),
+            '@foo': path.resolve(__dirname, 'src/foo')
         }
     },
     devServer: {
