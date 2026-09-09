@@ -68,7 +68,7 @@ module.exports = {
             }
         ]
     },
-    plugins: [htmlWebpackConst, CopyWebpackPluginConst],
+    plugins: [htmlWebpackConst],
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
     },
