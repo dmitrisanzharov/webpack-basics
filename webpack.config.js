@@ -30,9 +30,16 @@ const TsconfigPathsPluginConst = new TsconfigPathsPlugin({
 
 const DotenvConst = new Dotenv();
 
-module.exports = (environmentalVariable) => {
-    console.log("environmentalVariable: ", environmentalVariable);
-
+module.exports = (customEnvVars, webpackOptionsAkaArgV) => {
+    console.log('test');
+    console.log('customEnvVars', customEnvVars);
+    console.log('boolean true', Boolean(customEnvVars.isTrue));
+    console.log('boolean false', Boolean(customEnvVars.isNotDefined));
+    console.log('false', !customEnvVars.isString === 'false');
+    console.log('============================');
+    console.log('webpackOptionsAkaArgV', webpackOptionsAkaArgV);
+    console.log('webpackOptionsAkaArgV.env', webpackOptionsAkaArgV.env);
+    console.log('---------------------------------');
 
     return {
         mode: 'production',
